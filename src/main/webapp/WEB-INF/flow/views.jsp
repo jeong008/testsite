@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 게시판 메인 </title>
+<title>글 확인 </title>
 </head>
 <body>
-	<div class="" style=";"> 
-		<b> </b>
-	</div>
-	
-
 
 </body>
 </html>

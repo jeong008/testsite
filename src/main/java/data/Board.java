@@ -3,41 +3,27 @@ package data;
 import java.sql.Date;
 
 public class Board {
-	
-	String board_pass;
+
+
+	String boardPass;
 	String title;
 	String content;
 	String writer;
-	String user_id;
+	String userId;
 	
-	int board_id;
+	int boardId;
 	int views;
 	int likes;
 
 	Date writed;
+	
 
-	
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-	public int getLikes() {
-		return likes;
-	}
-	
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
-	
-	public String getBoard_pass() {
-		return board_pass;
+	public String getBoardPass() {
+		return boardPass;
 	}
 
-	public void setBoard_pass(String board_pass) {
-		this.board_pass = board_pass;
+	public void setBoardPass(String boardPass) {
+		this.boardPass = boardPass;
 	}
 
 	public String getTitle() {
@@ -64,12 +50,20 @@ public class Board {
 		this.writer = writer;
 	}
 
-	public int getBoard_id() {
-		return board_id;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setBoard_id(int board_id) {
-		this.board_id = board_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public int getBoardId() {
+		return boardId;
+	}
+
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
 	}
 
 	public int getViews() {
@@ -80,6 +74,14 @@ public class Board {
 		this.views = views;
 	}
 
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
 	public Date getWrited() {
 		return writed;
 	}
@@ -88,5 +90,15 @@ public class Board {
 		this.writed = writed;
 	}
 
+	
+	
+	@Override
+	public String toString() {
+		return "Board [boardPass=" + boardPass + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", userId=" + userId + ", boardId=" + boardId + ", views=" + views + ", likes=" + likes + ", writed="
+				+ writed + "]";
+	}
+	
+	
 
 }

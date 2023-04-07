@@ -10,8 +10,8 @@
 				<property name="driver"
 					value="oracle.jdbc.driver.OracleDriver" />
 				<property name="url"
-					value="jdbc:oracle:thin:@192.168.4.93:1521:xe" />
-				<property name="username" value="C##BOARD" />
+					value="jdbc:oracle:thin:@52.78.176.33:1521:xe" />
+				<property name="username" value="C##ALPHA" />
 				<property name="password" value="$1q2w3e4r" />
 			</dataSource>
 		</environment>
@@ -19,6 +19,7 @@
 	
 	<mappers>
   		<mapper resource="mybatis/board-mapper.xml"/>
+  		<mapper resource="mybatis/board.xml"/>
   		<mapper resource="mybatis/mapper.xml"/>
 		
 	</mappers>

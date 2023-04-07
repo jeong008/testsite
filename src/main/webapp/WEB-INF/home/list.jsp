@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 글 작성</title>
+<title>게시판</title>
 </head>
 <body>
 	 <h3> 게시글 작성 </h3>
@@ -34,7 +34,7 @@
 	 				</tbody>
 	 			</table>		
 	 			
-	 				
+	 			<input type="submit" class="btn btn-primary pull-right" value="글쓰기">	
 	 		</form>
 	 	</div>
 	 </div>
