@@ -1,8 +1,10 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,35 +17,58 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import data.Board;
 import data.User;
-import repository.Boards;
-import repository.Users;
 
-/*
- * 
- */
-@WebServlet("/home/list")
+@WebServlet("/index")
 public class IndexController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		SqlSessionFactory factory =
-				(SqlSessionFactory)req.getServletContext().getAttribute("sqlSessionFactory");
+		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
 		SqlSession sqlSession = factory.openSession();
+		User logonUser = (User) req.getSession().getAttribute("logonUser");
 		
-		String target = req.getParameter("target"); 
-		Board found = sqlSession.selectOne("boards.");
-		List<User> result = sqlSession.selectList("boards.findLatest");
-
+		int p;
+		if (req.getParameter("page") == null) {
+			p = 1;
+		}else {
+			p = Integer.parseInt(req.getParameter("page"));
+		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("a", p*10-9);
+		map.put("b", p*10);
+		List<Board> list = sqlSession.selectList("boards.findByWrited", map);
+		req.setAttribute("list", list);
+		String arr = req.getParameter("arr");
+		if (arr == null) {			
+		} else {
+			if (arr.equals("views")) {
+				list = sqlSession.selectList("boards.findByViews", map);
+				req.setAttribute("list", list);
+			} else if (arr.equals("Likes")) {
+				list = sqlSession.selectList("boards.findByLikes", map);
+				req.setAttribute("list", list);
+			} else {
+				list = sqlSession.selectList("boards.findByWrited", map);
+				req.setAttribute("list", list);
+			}
+		}
 		
-		Date today = new Date();
-		req.setAttribute("today", today);
+		int total = sqlSession.selectOne("boards.countBoards");
+		int lastPage = total / 10 + (total % 10 > 0 ? 1 : 0);
+		int last = (int) Math.ceil(p / 5.0) * 5;
+		int start = last -4;
 		
-		List<Board> list = Boards.boardList();
+		last = last > lastPage ? lastPage : last;
 		
-		req.setAttribute("latest", result);
-		req.setAttribute("millis", System.currentTimeMillis());
+		req.setAttribute("start", start); 
+		req.setAttribute("last", last); 
 		
-		req.getRequestDispatcher("/WEB-INF/home/list.jsp").forward(req, resp);
+		boolean existPrev = p >=6;
+		boolean existNext = lastPage > last;
+		req.setAttribute("existPrev", existPrev);
+		req.setAttribute("existNext", existNext);
+		
+		sqlSession.close();
+		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
 	}
 }

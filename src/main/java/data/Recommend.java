@@ -1,23 +1,21 @@
 package data;
 
 public class Recommend {
-	
-	String re_user;
-	int re_board;
+	String reUser;
+	int reBoard;
 	int status;
-
 	
-	public String getRe_user() {
-		return re_user;
+	public String getReUser() {
+		return reUser;
 	}
-	public void setRe_user(String re_user) {
-		this.re_user = re_user;
+	public void setReUser(String reUser) {
+		this.reUser = reUser;
 	}
-	public int getRe_board() {
-		return re_board;
+	public int getReBoard() {
+		return reBoard;
 	}
-	public void setRe_board(int re_board) {
-		this.re_board = re_board;
+	public void setReBoard(int reBoard) {
+		this.reBoard = reBoard;
 	}
 	public int getStatus() {
 		return status;
@@ -25,5 +23,5 @@ public class Recommend {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
+	
 }
