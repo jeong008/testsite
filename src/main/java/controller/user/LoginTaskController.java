@@ -14,7 +14,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import data.User;
 
-@WebServlet("/user/login-task")
+@WebServlet("/views/login-task")
 public class LoginTaskController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class LoginTaskController extends HttpServlet{
 		User user = sqlSession.selectOne("users.findById", id);
 
 		if (user == null) {
-			resp.sendRedirect("/user/login?cause=error");
+			resp.sendRedirect("/views/login?cause=error");
 		}else {
 			if (user.getPass().equals(pass)) {
 				HttpSession session = req.getSession();
